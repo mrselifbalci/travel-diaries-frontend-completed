@@ -6,7 +6,7 @@ export default function DestinationCard({destination}) {
 
 
 const handleDelete=()=>{
- 
+  
 }
 
 

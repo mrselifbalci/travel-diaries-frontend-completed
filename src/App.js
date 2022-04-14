@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react'
+import {UserContext} from './context/UserContext'
 import './App.css';
 import {
 	BrowserRouter,
@@ -16,19 +17,38 @@ import Form from './components/Form.js/Form';
 
 function App() {
 
+const baseUrl = 'https://travel-diaries-november.herokuapp.com'  
 const [destinations,setDestinations]=useState([])
+const [user,setUser]=useState({})
+
+useEffect(() => {
+  axios.get(`${baseUrl}/destinations`)
+  .then(res=>{
+    setDestinations(res.data)
+  })
+  .catch(err=>console.log(err))
+}, [])
 
 
 
-  return (
-      <BrowserRouter>
-        <Header/>
+
+
+
+
+
+  return ( 
+    <UserContext.Provider value={{user,setUser}}>
+       <BrowserRouter>
+        <Header baseUrl={baseUrl}/>
               <Routes>
                 <Route path="/" element={<Destinations destinations={destinations} />}/>
-                <Route path="/add-destination" element={<Form/>}/>
+                <Route path="/add-destination" element={<Form baseUrl={baseUrl}/>}/>
               </Routes>
         <Footer/>
-        </BrowserRouter>
+      </BrowserRouter>
+
+    </UserContext.Provider>
+     
    
     
     
