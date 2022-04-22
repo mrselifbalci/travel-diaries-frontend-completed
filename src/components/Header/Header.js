@@ -84,7 +84,7 @@ export default function Header({baseUrl}) {
                 <form onSubmit={handleLogin}>
                   <input type="text" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}/>
                   <input type="password" placeholder="Enter password" onChange={(e)=>setPassword(e.target.value)}/>
-                  <button className='login-btn' type="submit" onChange={(e)=>setImageUrl(e.target.value)}>Submit</button>
+                  <button className='login-btn' type="submit" >Submit</button>
                 </form>
                 <p>Don't have an account? <span onClick={()=>{setUserExists(false)}}>Sign up</span></p>
                 {message !== '' ? <p>{message}</p> : null}
